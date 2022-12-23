@@ -1,9 +1,10 @@
+import './utils/loadEnv.js'
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
 import { schema } from './graphql/schema.js'
-import { config } from 'dotenv'
+import { connectDB } from './database/db.js'
 
-config()
+connectDB()
 const app = express()
 const PORT = process.env.PORT || 3000
 
