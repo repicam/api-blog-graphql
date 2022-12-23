@@ -1,5 +1,5 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
-import { hello } from './queries'
+import { hello } from './queries.js'
 
 const RootType = new GraphQLObjectType({
   name: 'RootType',
@@ -9,8 +9,6 @@ const RootType = new GraphQLObjectType({
   }
 })
 
-const schema = new GraphQLSchema({
+export const schema = new GraphQLSchema({
   query: RootType
 })
-
-module.exports = schema

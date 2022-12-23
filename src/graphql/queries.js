@@ -1,9 +1,7 @@
 import { GraphQLString } from 'graphql'
 
-const hello = {
+export const hello = {
   type: GraphQLString,
   description: 'return a string',
   resolve: () => 'Hello string'
 }
-
-module.exports = { hello }
