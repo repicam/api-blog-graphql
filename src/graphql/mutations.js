@@ -1,5 +1,6 @@
 import { GraphQLString } from 'graphql'
 import { User } from '../models/index.js'
+import { hashPassword } from '../utils/bcrypt.js'
 
 export const register = {
   type: GraphQLString,
@@ -12,7 +13,10 @@ export const register = {
   },
   resolve: async (_, args) => {
     const { username, email, password, displayName } = args
-    await User.create({ username, email, password, displayName })
+
+    const hashedPassword = await hashPassword(password)
+
+    await User.create({ username, email, password: hashedPassword, displayName })
     return 'New user created'
   }
 }
