@@ -1,10 +1,11 @@
 import { GraphQLString } from 'graphql'
 import { User } from '../models/index.js'
 import { hashPassword } from '../utils/bcrypt.js'
+import { createToken } from '../utils/auth.js'
 
 export const register = {
   type: GraphQLString,
-  description: 'Register a new user',
+  description: 'Register a new user and returns a token',
   args: {
     username: { type: GraphQLString },
     email: { type: GraphQLString },
@@ -16,7 +17,8 @@ export const register = {
 
     const hashedPassword = await hashPassword(password)
 
-    await User.create({ username, email, password: hashedPassword, displayName })
-    return 'New user created'
+    const newUser = await User.create({ username, email, password: hashedPassword, displayName })
+
+    return createToken({ _id: newUser._id, username: newUser.username })
   }
 }
