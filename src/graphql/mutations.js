@@ -1,5 +1,5 @@
 import { GraphQLString } from 'graphql'
-import { User } from '../models/index.js'
+import { User } from '../models/User.js'
 import { comparePassword, hashPassword } from '../utils/bcrypt.js'
 import { createToken } from '../utils/auth.js'
 

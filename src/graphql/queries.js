@@ -1,7 +1,11 @@
-import { GraphQLString } from 'graphql'
+import { GraphQLList } from 'graphql'
+import { UserType } from './types.js'
+import { User } from '../models/User.js'
 
-export const hello = {
-  type: GraphQLString,
-  description: 'return a string',
-  resolve: () => 'Hello string'
+export const users = {
+  type: new GraphQLList(UserType),
+  description: 'List of users',
+  resolve () {
+    return User.find()
+  }
 }
