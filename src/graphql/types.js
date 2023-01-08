@@ -1,4 +1,5 @@
 import { GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql'
+import { User } from '../models/User.js'
 
 export const UserType = new GraphQLObjectType({
   name: 'UserType',
@@ -18,6 +19,12 @@ export const PostType = new GraphQLObjectType({
   fields: {
     id: { type: GraphQLID },
     title: { type: GraphQLString },
-    body: { type: GraphQLString }
+    body: { type: GraphQLString },
+    author: {
+      type: UserType,
+      resolve (parent) {
+        return User.findById(parent.authorId)
+      }
+    }
   }
 })
