@@ -52,9 +52,9 @@ export const createPost = {
     title: { type: GraphQLString },
     body: { type: GraphQLString }
   },
-  resolve: async (_, args) => {
+  resolve: (_, args, { verifiedUser }) => {
     const { title, body } = args
 
-    return Post.create({ title, body, authorId: '63b06b8e69e0817bc8001a5f' })
+    return Post.create({ title, body, authorId: verifiedUser._id })
   }
 }

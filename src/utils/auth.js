@@ -5,3 +5,7 @@ export function createToken (user) {
     expiresIn: '1h'
   })
 }
+
+export function verifyToken (token) {
+  return jwt.verify(token, process.env.JWT_SECRET)
+}
