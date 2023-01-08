@@ -1,5 +1,5 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
-import { users, user } from './queries.js'
+import { users, user, posts } from './queries.js'
 import { register, login, createPost } from './mutations.js'
 
 const RootType = new GraphQLObjectType({
@@ -7,7 +7,8 @@ const RootType = new GraphQLObjectType({
   description: 'Example',
   fields: {
     users,
-    user
+    user,
+    posts
   }
 })
 

@@ -1,13 +1,12 @@
 import { GraphQLID, GraphQLList } from 'graphql'
-import { UserType } from './types.js'
+import { PostType, UserType } from './types.js'
 import { User } from '../models/User.js'
+import { Post } from '../models/Post.js'
 
 export const users = {
   type: new GraphQLList(UserType),
   description: 'List of users',
-  resolve: () => {
-    return User.find()
-  }
+  resolve: () => User.find()
 }
 
 export const user = {
@@ -16,7 +15,11 @@ export const user = {
   args: {
     id: { type: GraphQLID }
   },
-  resolve: (_, args) => {
-    return User.findById(args.id)
-  }
+  resolve: (_, args) => User.findById(args.id)
+}
+
+export const posts = {
+  type: new GraphQLList(PostType),
+  description: 'Get all posts',
+  resolve: () => Post.find()
 }
