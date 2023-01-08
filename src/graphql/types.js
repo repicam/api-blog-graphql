@@ -11,3 +11,13 @@ export const UserType = new GraphQLObjectType({
     displayName: { type: GraphQLString }
   }
 })
+
+export const PostType = new GraphQLObjectType({
+  name: 'PostType',
+  description: 'Post type',
+  fields: {
+    id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    body: { type: GraphQLString }
+  }
+})

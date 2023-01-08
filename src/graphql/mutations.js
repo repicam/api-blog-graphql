@@ -1,7 +1,9 @@
 import { GraphQLString } from 'graphql'
 import { User } from '../models/User.js'
+import { Post } from '../models/Post.js'
 import { comparePassword, hashPassword } from '../utils/bcrypt.js'
 import { createToken } from '../utils/auth.js'
+import { PostType } from './types.js'
 
 export const register = {
   type: GraphQLString,
@@ -40,5 +42,19 @@ export const login = {
     if (!user || !correctPassword) throw new Error('Invalid credentials!')
 
     return createToken({ _id: user._id, username: user.username })
+  }
+}
+
+export const createPost = {
+  type: PostType,
+  description: 'Create a new post',
+  args: {
+    title: { type: GraphQLString },
+    body: { type: GraphQLString }
+  },
+  resolve: async (_, args) => {
+    const { title, body } = args
+
+    return Post.create({ title, body, authorId: '63b06b8e69e0817bc8001a5f' })
   }
 }

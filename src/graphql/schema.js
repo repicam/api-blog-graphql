@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 import { users, user } from './queries.js'
-import { register, login } from './mutations.js'
+import { register, login, createPost } from './mutations.js'
 
 const RootType = new GraphQLObjectType({
   name: 'RootType',
@@ -16,7 +16,8 @@ const MutationType = new GraphQLObjectType({
   description: 'The mutation type',
   fields: {
     register,
-    login
+    login,
+    createPost
   }
 })
 
