@@ -23,3 +23,12 @@ export const posts = {
   description: 'Get all posts',
   resolve: () => Post.find()
 }
+
+export const post = {
+  type: PostType,
+  description: 'Get a post by id',
+  args: {
+    id: { type: GraphQLID }
+  },
+  resolve: (_, args) => Post.findById(args.id)
+}
